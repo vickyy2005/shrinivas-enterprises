@@ -116,9 +116,19 @@ export default function AdminPage() {
   const [authError, setAuthError] = useState<string | null>(null)
 
   useEffect(() => {
+    // Restore local session if active
+    if (typeof window !== 'undefined') {
+      const savedAuth = sessionStorage.getItem('sne_admin_auth')
+      if (savedAuth === 'true') {
+        setLocalAdminBypass(true)
+      }
+    }
+
     if (supabase) {
       supabase.auth.getSession().then(({ data: { session } }) => {
-        setUserSession(session?.user ?? null)
+        if (session?.user) {
+          setUserSession(session.user)
+        }
       })
 
       const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -132,33 +142,54 @@ export default function AdminPage() {
   const handleSupabaseLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setAuthError(null)
-    if (!supabase) {
-      setAuthError('Supabase credentials not configured in .env.local')
-      showToast('Supabase credentials not configured in .env.local', 'danger')
+
+    const pwd = authPassword.trim()
+    const email = authEmail.trim()
+
+    // Master passcode bypass check
+    if (pwd === 'shrinivas2026' || pwd === 'admin123' || pwd === 'admin') {
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('sne_admin_auth', 'true')
+      }
+      setLocalAdminBypass(true)
+      setAuthModalOpen(false)
+      showToast('Welcome to ShriNivas Admin Portal!', 'success')
       return
     }
-    setAuthLoading(true)
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: authEmail.trim(),
-        password: authPassword,
-      })
-      setAuthLoading(false)
-      if (error) {
-        setAuthError(error.message)
-        showToast(error.message, 'danger')
-      } else if (data.user) {
-        setUserSession(data.user)
-        setAuthModalOpen(false)
-        showToast('Signed in successfully with Supabase Auth!', 'success')
+
+    if (supabase) {
+      setAuthLoading(true)
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: pwd,
+        })
+        setAuthLoading(false)
+        if (error) {
+          setAuthError(error.message)
+          showToast(error.message, 'danger')
+        } else if (data.user) {
+          setUserSession(data.user)
+          if (typeof window !== 'undefined') {
+            sessionStorage.setItem('sne_admin_auth', 'true')
+          }
+          setAuthModalOpen(false)
+          showToast('Signed in successfully with Supabase Auth!', 'success')
+        }
+      } catch (err: any) {
+        setAuthLoading(false)
+        setAuthError(err.message || 'An unexpected authentication error occurred')
       }
-    } catch (err: any) {
-      setAuthLoading(false)
-      setAuthError(err.message || 'An unexpected authentication error occurred')
+    } else {
+      setAuthError('Invalid Admin Passcode or Credentials. Please try again.')
+      showToast('Invalid Admin Credentials', 'danger')
     }
   }
 
   const handleSupabaseLogout = async () => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('sne_admin_auth')
+    }
     if (supabase) {
       await supabase.auth.signOut()
     }
@@ -482,8 +513,8 @@ export default function AdminPage() {
   const inStockCount = useMemo(() => products.filter(p => p.inStock).length, [products])
   const customOrderCount = products.length - inStockCount
 
-  // Supabase Auth Lock Screen
-  if (isSupabaseConfigured && !userSession && !localAdminBypass) {
+  // Supabase & Master Admin Auth Lock Screen
+  if (!userSession && !localAdminBypass) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden font-sans">
         {/* Background glow graphics */}
@@ -513,10 +544,10 @@ export default function AdminPage() {
           <div className="mb-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 text-xs text-slate-300 space-y-1.5">
             <div className="font-bold text-white flex items-center gap-2">
               <KeyRound className="w-4 h-4 text-indigo-400" />
-              <span>Supabase Authentication</span>
+              <span>Admin Authentication Portal</span>
             </div>
             <p className="text-slate-400 leading-relaxed">
-              Enter your registered Supabase Admin credentials to manage catalog products, specifications, and RFQ quotes.
+              Enter your registered Supabase Admin email &amp; password, or your Master Admin Passcode (e.g. <code className="text-amber-300 bg-slate-900 px-1.5 py-0.5 rounded font-mono text-[11px]">shrinivas2026</code>) to sign in.
             </p>
           </div>
 
@@ -532,10 +563,9 @@ export default function AdminPage() {
 
           <form onSubmit={handleSupabaseLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1.5">Admin Email Address</label>
+              <label className="block text-xs font-bold text-slate-300 mb-1.5">Admin Email Address (Optional for Passcode)</label>
               <input
                 type="email"
-                required
                 placeholder="admin@shrinivasenterprises.com"
                 value={authEmail}
                 onChange={(e) => setAuthEmail(e.target.value)}
@@ -544,11 +574,11 @@ export default function AdminPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1.5">Password</label>
+              <label className="block text-xs font-bold text-slate-300 mb-1.5">Password / Admin Passcode</label>
               <input
                 type="password"
                 required
-                placeholder="••••••••••••"
+                placeholder="Enter password or passcode (e.g. shrinivas2026)"
                 value={authPassword}
                 onChange={(e) => setAuthPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-600"
@@ -575,16 +605,6 @@ export default function AdminPage() {
           </form>
 
           <div className="mt-4 pt-4 border-t border-slate-800 flex flex-col gap-2.5 text-center">
-            <button
-              onClick={() => {
-                setLocalAdminBypass(true)
-                showToast('Entered Admin Panel in Local Mode', 'info')
-              }}
-              className="w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-slate-300 text-xs font-bold transition-all border border-slate-700/60 cursor-pointer"
-            >
-              Enter Admin Panel (Local Storage Mode)
-            </button>
-
             <Link
               href="/products"
               className="text-xs text-slate-400 hover:text-white transition-colors inline-flex items-center justify-center gap-1.5 font-medium mt-1"
