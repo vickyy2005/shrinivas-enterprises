@@ -1,0 +1,189 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-heading), system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --background: #faf6f0;
+  --foreground: #231b14;
+  --card: #ffffff;
+  --card-foreground: #231b14;
+  --primary: #85532a;
+  --primary-foreground: #ffffff;
+  --secondary: #f4eee4;
+  --secondary-foreground: #38271e;
+  --muted: #f3ede4;
+  --muted-foreground: #786658;
+  --border: #e8dfd2;
+  --input: #e8dfd2;
+  --ring: #85532a;
+  --radius: 0.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+@keyframes floatParticle {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-8px) translateX(6px); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: floatParticle 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1c1510;
+}
+::-webkit-scrollbar-thumb {
+  background: #6e4423;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #85532a;
+}
+
+/* ==========================================================================
+   Neumorphism (Soft UI) Cream Design System & Effects
+   ========================================================================== */
+.neu-bg {
+  background-color: #f6efe6;
+}
+
+.neu-card {
+  background: #fdfbf7;
+  box-shadow: 12px 12px 28px #e2d7c8, -12px -12px 28px #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+.neu-card-hover {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.neu-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 16px 16px 34px #d8ccbb, -16px -16px 34px #ffffff;
+}
+
+.neu-inset {
+  background: #f4ece2;
+  box-shadow: inset 4px 4px 8px #e0d5c5, inset -4px -4px 8px #ffffff;
+  transition: all 0.25s ease;
+}
+
+.neu-inset:focus,
+.neu-inset:focus-within {
+  box-shadow: inset 5px 5px 10px #d8ccbb, inset -5px -5px 10px #ffffff, 0 0 0 2px rgba(133, 83, 42, 0.3);
+}
+
+.neu-chip {
+  background: #f6efe6;
+  box-shadow: 4px 4px 10px #e2d7c8, -4px -4px 10px #ffffff;
+  transition: all 0.2s ease;
+}
+.neu-chip:hover {
+  box-shadow: 6px 6px 12px #d8ccbb, -6px -6px 12px #ffffff;
+  transform: translateY(-1px);
+}
+.neu-chip-active {
+  background: #ebdccb;
+  box-shadow: inset 3px 3px 6px #d8ccbb, inset -3px -3px 6px #ffffff;
+  color: #85532a;
+  font-weight: 700;
+}
+
+.neu-icon-box {
+  background: #f6efe6;
+  box-shadow: 6px 6px 14px #e2d7c8, -6px -6px 14px #ffffff;
+  transition: all 0.3s ease;
+}
+.neu-icon-box:hover {
+  box-shadow: inset 3px 3px 6px #e2d7c8, inset -3px -3px 6px #ffffff;
+  transform: scale(0.98);
+}
+
+.neu-button-primary {
+  background: linear-gradient(135deg, #85532a 0%, #5c371a 100%);
+  box-shadow: 8px 8px 20px rgba(92, 55, 26, 0.35), -6px -6px 16px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.neu-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 10px 10px 24px rgba(92, 55, 26, 0.45), -8px -8px 20px rgba(255, 255, 255, 0.95);
+}
+.neu-button-primary:active {
+  transform: translateY(1px);
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes shimmerSweep {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+.animate-shimmer-sweep {
+  animation: shimmerSweep 3s infinite ease-in-out;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
