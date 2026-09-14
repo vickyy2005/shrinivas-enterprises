@@ -114,8 +114,8 @@ export function Footer({ onOpenRfq }: { onOpenRfq?: () => void }) {
                 <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-2xs">
                   <Phone className="w-3.5 h-3.5" />
                 </div>
-                <a href="tel:+917021003269" className="text-slate-100 font-bold hover:text-amber-300 transition-colors">
-                  +91 70210 03269
+                <a href="tel:+918286644929" className="text-slate-100 font-bold hover:text-amber-300 transition-colors">
+                  +91 82866 44929
                 </a>
               </li>
 

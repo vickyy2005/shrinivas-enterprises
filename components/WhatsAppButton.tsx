@@ -3,7 +3,7 @@ import React from 'react'
 export function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/917021003269?text=Hello%20ShriNivas%20Enterprises,%20I%20have%20an%20inquiry%20for%20industrial%20piping%20materials."
+      href="https://wa.me/918286644929?text=Hello%20ShriNivas%20Enterprises,%20I%20have%20an%20inquiry%20for%20industrial%20piping%20materials."
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

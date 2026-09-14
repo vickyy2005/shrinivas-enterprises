@@ -586,7 +586,7 @@ export default function HomePage() {
               </button>
 
               <a
-                href="tel:+917021003269"
+                href="tel:+918286644929"
                 className="bg-[#36271c] hover:bg-[#453224] border border-[#4d3727] text-[#e8ded5] px-5 py-2.5 rounded-xl font-medium text-sm transition-all flex items-center gap-2 cursor-pointer hover:border-[#6e4d36]"
               >
                 <Phone className="w-4 h-4 text-amber-400" />
@@ -595,7 +595,7 @@ export default function HomePage() {
             </div>
 
             <a
-              href="https://wa.me/917021003269?text=Hello%20ShriNivas%20Enterprises,%20I%20need%20a%20bulk-order%20B2B%20quote%20for%20industrial%20piping%20materials."
+              href="https://wa.me/918286644929?text=Hello%20ShriNivas%20Enterprises,%20I%20need%20a%20bulk-order%20B2B%20quote%20for%20industrial%20piping%20materials."
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-[#ab9b8e] hover:text-white text-xs font-medium transition-colors"
@@ -603,7 +603,7 @@ export default function HomePage() {
               <svg viewBox="0 0 32 32" className="w-4 h-4 fill-[#25D366]">
                 <path d="M16 2C8.268 2 2 8.268 2 16c0 2.766.804 5.344 2.188 7.516L2.062 30l6.703-2.078A13.914 13.914 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.578c-2.344 0-4.547-.672-6.422-1.828l-.453-.281-4.75 1.469 1.484-4.609-.312-.484A11.536 11.536 0 0 1 4.422 16c0-6.391 5.188-11.578 11.578-11.578 6.391 0 11.578 5.188 11.578 11.578 0 6.391-5.188 11.578-11.578 11.578zm6.547-8.687c-.359-.187-2.125-1.047-2.453-1.172-.328-.125-.562-.187-.812.187-.234.359-.922 1.172-1.125 1.406-.203.234-.406.266-.766.078-.359-.187-1.516-.562-2.891-1.781-1.078-.969-1.812-2.156-2.016-2.516-.219-.359-.016-.547.156-.734.156-.156.359-.406.547-.609.188-.203.25-.359.375-.594.125-.234.062-.438-.031-.625-.094-.188-.812-1.953-1.109-2.672-.297-.703-.594-.609-.812-.609h-.688c-.234 0-.625.094-.953.438-.328.359-1.25 1.219-1.25 2.969s1.281 3.453 1.453 3.688c.188.234 2.516 3.844 6.094 5.391.859.375 1.531.594 2.062.766.875.281 1.672.234 2.297.141.703-.109 2.125-.875 2.422-1.719.312-.844.312-1.562.219-1.719-.094-.156-.328-.25-.688-.438z" />
               </svg>
-              <span>Get instant stock checks on WhatsApp at <strong>+91 70210 03269</strong></span>
+              <span>Get instant stock checks on WhatsApp at <strong>+91 82866 44929</strong></span>
             </a>
           </div>
         </div>

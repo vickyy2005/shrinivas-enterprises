@@ -105,10 +105,10 @@ export default function ContactPage() {
                       </span>
                     </div>
                     <a
-                      href="tel:+917021003269"
+                      href="tel:+918286644929"
                       className="text-base font-bold text-[#85532a] hover:text-[#5c371a] block mt-0.5 transition-colors"
                     >
-                      +91 70210 03269
+                      +91 82866 44929
                     </a>
                     <span className="text-xs text-[#786658] mt-0.5 block">
                       Monday – Sunday: 9:00 AM to 7:00 PM (IST)
@@ -174,7 +174,7 @@ export default function ContactPage() {
                   <p className="text-xs text-[#d1c2b5] mt-0.5">Get live stock checks and fast quotation</p>
                 </div>
                 <a
-                  href="https://wa.me/917021003269?text=Hello%20ShriNivas%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20bulk%20orders."
+                  href="https://wa.me/918286644929?text=Hello%20ShriNivas%20Enterprises,%20I%20have%20an%20inquiry%20regarding%20bulk%20orders."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative z-10 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2.5 rounded-xl font-bold text-xs shrink-0 transition-all flex items-center gap-1.5 shadow-md shadow-emerald-500/30 hover:scale-105 active:scale-95"

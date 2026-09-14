@@ -9,11 +9,11 @@ export function TopBar() {
         {/* Left Contact Info */}
         <div className="flex items-center gap-5 sm:gap-7">
           <a
-            href="tel:+917021003269"
+            href="tel:+918286644929"
             className="flex items-center gap-2 hover:text-amber-300 transition-colors font-medium"
           >
             <Phone className="w-3.5 h-3.5 text-amber-400" />
-            <span>+91 70210 03269</span>
+            <span>+91 82866 44929</span>
           </a>
           <a
             href="mailto:sales@shrinivasenterprises.in"
