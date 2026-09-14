@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+
 import {
   ArrowRight,
   Check,
@@ -35,6 +37,7 @@ import { RfqModal } from '@/components/RfqModal'
 import { Product, useProductStore } from '@/lib/productStore'
 
 export default function ProductsPage() {
+  const router = useRouter()
   const { products } = useProductStore()
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('All')
@@ -72,8 +75,11 @@ export default function ProductsPage() {
   }, [category, query, products])
 
   const openQuoteModal = (productName = '') => {
-    setSelectedForRfq(productName)
-    setRfqOpen(true)
+    if (productName) {
+      router.push(`/contact?product=${encodeURIComponent(productName)}#rfq-form`)
+    } else {
+      router.push('/contact#rfq-form')
+    }
   }
 
   // Count items per category

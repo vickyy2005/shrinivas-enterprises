@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -174,6 +175,7 @@ const coreCategories = [
 ]
 
 export default function HomePage() {
+  const router = useRouter()
   const [selected, setSelected] = useState<Product | null>(null)
   const [rfqOpen, setRfqOpen] = useState(false)
   const [selectedForRfq, setSelectedForRfq] = useState('')
@@ -212,8 +214,11 @@ export default function HomePage() {
   }, [heroSlides.length])
 
   const openQuoteModal = (productName = '') => {
-    setSelectedForRfq(productName)
-    setRfqOpen(true)
+    if (productName) {
+      router.push(`/contact?product=${encodeURIComponent(productName)}#rfq-form`)
+    } else {
+      router.push('/contact#rfq-form')
+    }
   }
 
   return (

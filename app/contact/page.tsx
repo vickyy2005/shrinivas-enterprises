@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Phone,
   Mail,
@@ -31,6 +31,42 @@ export default function ContactPage() {
   const [formSent, setFormSent] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('All Products / BOM')
+  const [requirementText, setRequirementText] = useState('')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const productParam = urlParams.get('product')
+      if (productParam) {
+        setRequirementText(`Requesting official B2B quotation for: ${productParam}. Please provide bulk pricing, lead time, and technical specifications.`)
+        
+        const pLower = productParam.toLowerCase()
+        if (pLower.includes('heat sink')) {
+          setSelectedCategory('Heat Sinks')
+        } else if (pLower.includes('perforated flask') || pLower.includes('flask')) {
+          setSelectedCategory('310 SS Perforated Flasks')
+        } else if (pLower.includes('pipe')) {
+          setSelectedCategory('Industrial Pipes')
+        } else if (pLower.includes('fitting') || pLower.includes('tee') || pLower.includes('reducer') || pLower.includes('bend')) {
+          setSelectedCategory('Valves & Fittings')
+        }
+
+        setTimeout(() => {
+          const formElement = document.getElementById('rfq-form')
+          if (formElement) {
+            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 150)
+      } else if (window.location.hash === '#rfq-form') {
+        setTimeout(() => {
+          const formElement = document.getElementById('rfq-form')
+          if (formElement) {
+            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 150)
+      }
+    }
+  }, [])
 
   return (
     <main className="min-h-screen bg-[#faf6f0] text-[#231b14] font-sans">
@@ -186,7 +222,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right Contact / RFQ Form (7 cols) - Full Neumorphic Treatment */}
-            <div className="lg:col-span-7">
+            <div id="rfq-form" className="lg:col-span-7 scroll-mt-28">
               <div className="neu-card rounded-3xl p-7 sm:p-10 relative overflow-hidden">
                 {formSent ? (
                   <div className="text-center py-14 animate-in zoom-in-95 duration-400">
@@ -330,6 +366,8 @@ export default function ContactPage() {
                         <textarea
                           required
                           rows={4}
+                          value={requirementText}
+                          onChange={(e) => setRequirementText(e.target.value)}
                           placeholder="Paste your Bill of Materials (BOM), required flask diameters/height, heat sink dimensions, material grades (310 SS, ASTM, IS), quantities, or project delivery destination..."
                           className="w-full neu-inset rounded-xl p-4 text-sm text-[#231b14] placeholder:text-[#8a7b70] focus:outline-none leading-relaxed resize-y min-h-[110px]"
                         />
