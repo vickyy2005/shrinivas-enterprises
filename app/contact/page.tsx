@@ -129,10 +129,10 @@ export default function ContactPage() {
                       </span>
                     </div>
                     <a
-                      href="mailto:sales@shrinivasenterprises.in"
+                      href="mailto:shrinivasw107f@gmail.com"
                       className="text-base font-bold text-[#85532a] hover:text-[#5c371a] block mt-0.5 transition-colors truncate"
                     >
-                      sales@shrinivasenterprises.in
+                      shrinivasw107f@gmail.com
                     </a>
                     <span className="text-xs text-[#786658] mt-0.5 block">
                       Inquiries, RFQs &amp; CAD/Drawing submissions

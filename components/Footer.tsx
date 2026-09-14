@@ -123,8 +123,8 @@ export function Footer({ onOpenRfq }: { onOpenRfq?: () => void }) {
                 <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-2xs">
                   <Mail className="w-3.5 h-3.5" />
                 </div>
-                <a href="mailto:sales@shrinivasenterprises.in" className="text-slate-200 hover:text-amber-300 transition-colors font-medium break-all">
-                  sales@shrinivasenterprises.in
+                <a href="mailto:shrinivasw107f@gmail.com" className="text-slate-200 hover:text-amber-300 transition-colors font-medium break-all">
+                  shrinivasw107f@gmail.com
                 </a>
               </li>
 

@@ -16,11 +16,11 @@ export function TopBar() {
             <span>+91 82866 44929</span>
           </a>
           <a
-            href="mailto:sales@shrinivasenterprises.in"
+            href="mailto:shrinivasw107f@gmail.com"
             className="flex items-center gap-2 hover:text-amber-300 transition-colors font-medium"
           >
             <Mail className="w-3.5 h-3.5 text-amber-400" />
-            <span>sales@shrinivasenterprises.in</span>
+            <span>shrinivasw107f@gmail.com</span>
           </a>
         </div>
 

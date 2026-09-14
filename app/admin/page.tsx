@@ -566,7 +566,7 @@ export default function AdminPage() {
               <label className="block text-xs font-bold text-slate-300 mb-1.5">Admin Email Address (Optional for Passcode)</label>
               <input
                 type="email"
-                placeholder="admin@shrinivasenterprises.com"
+                placeholder="shrinivasw107f@gmail.com"
                 value={authEmail}
                 onChange={(e) => setAuthEmail(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-600"
@@ -1687,7 +1687,7 @@ export default function AdminPage() {
                 <input
                   type="email"
                   required
-                  placeholder="admin@shrinivasenterprises.com"
+                  placeholder="shrinivasw107f@gmail.com"
                   value={authEmail}
                   onChange={(e) => setAuthEmail(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-medium focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/10"
